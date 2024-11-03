@@ -1,5 +1,6 @@
 {
   "name": "knighttravails",
+  "type": "module",
   "version": "1.0.0",
   "description": "The Knight Travails project for the Odin Project",
   "main": "index.js",
