@@ -2,23 +2,6 @@ export class Node {
   constructor(location) {
     this.location = location;
   }
-  // calculateMoves() {
-  //   for (let i = 0; i < this.possibleMoves.length; i++) {
-  //     let x = this.location[0] + this.possibleMoves[i][0];
-  //     let y = this.location[1] + this.possibleMoves[i][1];
-
-  //     if (x >= 0 && x < 8) {
-  //       if (y >= 0 && y < 8) {
-  //         this.legalMoves.push([x, y]);
-  //       }
-  //     }
-  //   }
-  //   if (this.legalMoves.length == 0) {
-  //     return;
-  //   }
-  //   this.pastMoves.push(this.location);
-  //   return this.legalMoves;
-  // }
   knightMove(target) {
     const possibleMoves = [
       [2, 1],
@@ -35,11 +18,26 @@ export class Node {
     visited.add(`${this.location[0]}, ${this.location[1]}}`);
     while (queue.length > 0) {
       let [currentPosition, path] = queue.shift();
-    }
-    if (currentPosition[0] === target[0] && currentPosition[1] === target[1]) {
-      console.log(`Reached in ${path.length - 1} hops:`);
-      path.forEach((move) => console.log(move));
-      return;
+
+      if (
+        currentPosition[0] === target[0] &&
+        currentPosition[1] === target[1]
+      ) {
+        console.log(`Reached in ${path.length - 1} hops:`);
+        path.forEach((move) => console.log(move));
+        return;
+      }
+      for (let move of possibleMoves) {
+        const x = currentPosition[0] + move[0];
+        const y = currentPosition[1] + move[1];
+        if (x >= 0 && x < 8 && y >= 0 && y < 8 && !visited.has(`${x},${y}`)) {
+          visited.add(`${x},${y}`);
+          queue.push([
+            [x, y],
+            [...path, [x, y]],
+          ]);
+        }
+      }
     }
   }
 }
