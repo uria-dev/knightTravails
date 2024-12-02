@@ -8,7 +8,7 @@ Given a knight's position on a chess board, calculate the shortest path it can t
 
 # How does it work?
 
-This works by treating the chess board like a graph. Using breadth-first traversal, the knight explores all possible moves until the end point is reached. It then returns the full path the the knight took, using a two-dimensional array to calculate coordinates. So for example:
+This works by treating the chess board like a graph. Using breadth-first traversal, the knight explores all possible moves until the end point is reached. It then returns the full path the the knight took, using an array wth two integers to signify the coordinates. For example:
 
 `[0, 0]` would be A1 on the physical chess board.
 `[1, 1]` would be B2 on the physical chess board
